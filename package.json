@@ -1,5 +1,5 @@
 {
-    "name": "grlc-nomp-odo",
+    "name": "nomp-odo-pool",
     "version": "0.0.4",
     "description": "An extremely efficient, highly scalable, all-in-one, easy to setup cryptocurrency mining pool",
     "keywords": [
@@ -12,9 +12,9 @@
         "litecoin",
         "scrypt"
     ],
-    "homepage": "https://github.com/MadCatMining/grlc-nomp-odo",
+    "homepage": "https://github.com/MadCatMining/nomp-odo-pool",
     "bugs": {
-        "url": "https://github.com/MadCatMining/grlc-nomp-odo/issues"
+        "url": "https://github.com/MadCatMining/nomp-odo-pool/issues"
     },
     "license": "GPL-2.0",
     "author": "Matthew Little",
@@ -28,11 +28,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/MadCatMining/grlc-nomp-odo.git"
+        "url": "https://github.com/MadCatMining/nomp-odo-pool.git"
     },
     "dependencies": {
         "async": "^3.1.0",
-        "bignum": "git://github.com/MadCatMining/node-bignum-odo.git",
+        "bignum": "https://github.com/MadCatMining/node-bignum.git",
         "body-parser": "^1.19.0",
         "colors": "^1.3.3",
         "compression": "^1.7.4",
@@ -46,7 +46,7 @@
         "nonce": "^1.0.4",
         "redis": "^2.7.1",
         "request": "^2.88.0",
-        "stratum-pool": "git://github.com/MadCatMining/node-stratum-pool-odo.git"
+        "stratum-pool": "https://github.com/MadCatMining/node-stratum-pool-odo.git"
     },
     "engines": {
         "node": ">=6.11.2"
