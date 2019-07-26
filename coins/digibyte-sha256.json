@@ -1,0 +1,10 @@
+{
+    "name": "DigiByte - sha256",
+    "symbol": "DGB",
+    "algorithm": "sha256",
+    "coinbase": "Crypto Pools by AoD Technologies LLC - https://cryptopools.aod-tech.com",
+    "peerMagic": "fac3b6da",
+    "peerMagicTestnet": "fdc8bddd",
+    "passAlgorithm": "sha256d",
+    "version_mask": "1fffe000"
+}

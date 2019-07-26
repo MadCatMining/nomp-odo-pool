@@ -1,0 +1,8 @@
+{
+	"name": "Horizen",
+	"symbol": "ZEN",
+	"algorithm": "equihash",
+	"coinbase": "Crypto Pools by AoD Technologies LLC - https://cryptopools.aod-tech.com",
+	"peerMagic": "63617368",
+	"peerMagicTestnet": "2f54cc9d"
+}

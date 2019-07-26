@@ -1,0 +1,34 @@
+<div id="workersPage">
+    <div id="topCharts">
+        {{ for (var i = 0, poolNames = Object.keys(it.stats.pools).sort(); i < poolNames.length; i++) { var pool = poolNames[i]; }}
+        <div class="chartWrapper card">
+            <div class="chartLabel"><amp-img src="{{=it.poolsConfigs[pool].logo}}" width="{{=it.poolsConfigs[pool].logoWidth}}" height="{{=it.poolsConfigs[pool].logoHeight}}" layout="fixed"></amp-img> {{=it.stats.pools[pool].name.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,function(s){return s.toUpperCase()})}}</div>
+            <div class="chartHolder">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>Shares</th>
+                            <th>Invalid shares</th>
+                            <th>Efficiency</th>
+                            <th>Hashrate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ for (var j = 0, workerNames = Object.keys(it.stats.pools[pool].workers).sort(); j < workerNames.length; j++) { var worker = workerNames[j]; }}
+                            {{var workerstat = it.stats.pools[pool].workers[worker];}}
+                        <tr class="odd">
+                            <td>{{=worker}}</td>
+                            <td>{{=Math.floor(workerstat.shares)}}</td>
+                            <td>{{=Math.floor(workerstat.invalidshares)}}</td>
+                            <td>{{? workerstat.shares > 0}} {{=Math.floor(10000 * workerstat.shares / (workerstat.shares + workerstat.invalidshares)) / 100}}% {{??}} 0% {{?}}</td>
+                            <td>{{=workerstat.hashrateString}}</td>
+                        </tr>
+                        {{ } }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{ } }}
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+    "name": "DigiByte",
+    "symbol": "DGB",
+    "algorithm": "odo",
+    "coinbase": "MCM",
+    "peerMagic": "fac3b6da",
+    "peerMagicTestnet": "fdc8bddd",
+    "passAlgorithm": true,
+
+    "shapechangeInterval": 864000
+}

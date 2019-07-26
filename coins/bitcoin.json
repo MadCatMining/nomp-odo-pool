@@ -1,0 +1,8 @@
+{
+	"name": "Bitcoin",
+	"symbol": "BTC",
+	"algorithm": "sha256",
+	"coinbase": "Crypto Pools by AoD Technologies LLC - https://cryptopools.aod-tech.com",
+	"peerMagic": "f9beb4d9",
+	"peerMagicTestnet": "0b110907"
+}

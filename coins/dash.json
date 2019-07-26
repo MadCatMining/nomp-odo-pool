@@ -1,0 +1,9 @@
+{
+    "name": "Dash",
+    "symbol": "DASH",
+    "algorithm": "x11",
+    "mposDiffMultiplier": 256,
+    "coinbase": "Crypto Pools by AoD Technologies LLC - https://cryptopools.aod-tech.com",
+    "peerMagic": "bf0c6bbd",
+    "peerMagicTestnet": "cee2caff"
+}

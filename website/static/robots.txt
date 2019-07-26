@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cryptopools.aod-tech.com/sitemap.xml

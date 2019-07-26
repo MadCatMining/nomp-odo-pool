@@ -1,0 +1,161 @@
+<div id="gettingStartedPage">
+    <div id="holder">
+        <div id="main" role="menu" class="card">
+            <span on="tap:coinList.focus" class="miningOption" role="menuitem" tabindex="-1">
+                <div class="miningOptionInstructions">
+                    <div>[Digibyte] mining</div>
+				<br>
+				<br>
+				<div>Please select a Coin button <br>
+					 to reveal settings.</div>
+				<br>
+				<br>
+				<br>
+                <div>
+				     Configurations for Digibyte miners are<br>
+				     available with three varDiff levels:
+					 </div>
+					 <br>
+				
+				<div>
+					Low(1) - 1/1280 <br>
+					Mid(1600)- 1280/51200 <br>
+					High(53800) - 51200/102400<br>
+				</div>
+            </span>
+        </div>
+        <div id="menu" class="card">
+            {{? (function(){
+                    if (!it.portalConfig.switching) return false;
+                    for (var i = 0, poolNames = Object.keys(it.portalConfig.switching).sort(); i < poolNames.length; i++) {
+                        var pool = poolNames[i];
+                        if (it.portalConfig.switching[pool].enabled)
+                            return true;
+                    }
+                    return false;
+                })()
+            }}
+            <div class="menuHeader">Coin-Switching Ports</div>
+            {{?}}
+
+            <div class="menuList" id="switchingList" role="menu">
+            {{ for (var i = 0, poolNames = Object.keys(it.portalConfig.switching).sort(); i < poolNames.length; i++) {
+                var pool = poolNames[i];
+                if (!it.portalConfig.switching[pool].enabled) continue;
+            }}
+                <span on="tap:coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}" class="poolOption" role="menuitem" tabindex="-1">{{= pool }}</a>
+            {{ } }}
+            </div>
+
+            <div class="menuHeader">Coins</div>
+            <div class="menuList" id="coinList" role="menu">
+                {{ for (var i = 0, poolNames = Object.keys(it.poolsConfigs).sort(); i < poolNames.length; i++) { var pool = poolNames[i]; }}
+                <span on="tap:coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}" class="poolOption" role="menuitem" tabindex="-1"><amp-img src="{{=it.poolsConfigs[pool].logo}}" width="{{=it.poolsConfigs[pool].logoWidth}}" height="{{=it.poolsConfigs[pool].logoHeight}}" layout="fixed"></amp-img> {{= pool }}</span>
+                {{ } }}
+            </div>
+        </div>
+    </div>
+
+	{{ for (var i = 0, poolNames = Object.keys(it.portalConfig.switching).sort(); i < poolNames.length; i++) {
+                var pool = poolNames[i];
+		if (!it.portalConfig.switching[pool].enabled) continue;
+		var info = {
+			algo: pool,
+			ports: {},
+			host: it.portalConfig.website.stratumHost
+		};
+		info.ports[it.portalConfig.switching[pool].port] = {diff: it.portalConfig.switching[pool].diff};
+	}}
+	<amp-lightbox id="coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}" layout="nodisplay">
+		<div on="tap:coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}.close" class="coinInfoBackground" role="button" tabindex="-1"></div>
+		<div class="coinInfo">
+			<span on="tap:coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}.close" class="coinInfoClose" role="button" tabindex="-1">×</span>
+			<div><span class="coinInfoName">{{= it.poolsConfigs[pool].coin.name.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(s){return s.toUpperCase()}) }}</span> Configuration:</div>
+			<div class="coinInfoRows">
+				<div class="coinInfoRowKeys">
+					<div>Username:</div>
+					<div>Password:</div>
+					{{
+						for (var port in info.ports){
+						var difficulty = 'Low';
+						switch( info.ports[port].diff ) {
+							case 1:
+							default:
+								break;
+							case 1280:
+								difficulty = 'Med';
+								break;
+							case 51200:
+								difficulty = 'High';
+								break;
+							case 40960000:
+								difficulty = 'Ultra';
+								break;
+						}
+					}}<div class="coinInfoData">URL <span class="coinInfoSubtle">({{= difficulty }})</span>:</div>
+					{{ } }}
+				</div>
+				<div class="coinInfoRowValues">
+					<div class="coinInfoUsername">Your Wallet address</div>
+					<div>single letter or word</div>
+					{{
+						for (var port in info.ports){
+					}}<div class="coinInfoData">stratum+tcp://{{= info.host }}:{{= port }}</div>
+					{{ } }}
+				</div>
+			</div>
+		</div>
+	</amp-lightbox>
+	{{
+	}
+        for (var i = 0, poolNames = Object.keys(it.poolsConfigs).sort(); i < poolNames.length; i++) {
+            var pool = poolNames[i];
+            var info = {
+                coin: it.poolsConfigs[pool].coin,
+                algo: it.poolsConfigs[pool].coin.algorithm,
+                ports: it.poolsConfigs[pool].ports,
+                host: it.portalConfig.website.stratumHost
+            };
+        }}
+	<amp-lightbox id="coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}" layout="nodisplay">
+		<div on="tap:coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}.close" class="coinInfoBackground" role="button" tabindex="-1"></div>
+		<div class="coinInfo">
+			<span on="tap:coinInfoLightbox-{{= pool.replace( / /g, '-' ) }}.close" class="coinInfoClose" role="button" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span>
+			<div><span class="coinInfoName">{{= it.poolsConfigs[pool].coin.name.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(s){return s.toUpperCase()}) }}</span> Configuration:</div>
+			<div class="coinInfoRows">
+				<div class="coinInfoRowKeys">
+					<div>Username:</div>
+					<div>Password:</div>
+					{{
+						for (var port in info.ports){
+						var difficulty = 'Low';
+						switch( info.ports[port].diff ) {
+							case 1:
+							default:
+								break;
+							case 1280:
+								difficulty = 'Med';
+								break;
+							case 51200:
+								difficulty = 'High';
+								break;
+							case 40960000:
+								difficulty = 'Ultra';
+								break;
+						}
+					}}<div class="coinInfoData">URL <span class="coinInfoSubtle">({{= difficulty }})</span>:</div>
+					{{ } }}
+				</div>
+				<div class="coinInfoRowValues">
+					<div class="coinInfoUsername">Your {{= info.coin.name.replace(/ - .*$/, '').replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(s){return s.toUpperCase()}) }} Wallet address</div>
+					<div>single letter or word</div>
+					{{
+						for (var port in info.ports){
+					}}<div class="coinInfoData">stratum+tcp://{{= info.host }}:{{= port }}</div>
+					{{ } }}
+				</div>
+			</div>
+		</div>
+	</amp-lightbox>
+	{{ } }}
+</div>

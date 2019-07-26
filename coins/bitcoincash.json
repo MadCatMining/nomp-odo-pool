@@ -1,0 +1,9 @@
+{
+	"name": "Bitcoin Cash",
+	"symbol": "BCH",
+	"algorithm": "sha256",
+	"coinbase": "Crypto Pools by AoD Technologies LLC - https://cryptopools.aod-tech.com",
+	"peerMagic": "e3e1f3e8",
+	"peerMagicTestnet": "f4e5f3f4",
+        "version_mask": "1fffe000"
+}
